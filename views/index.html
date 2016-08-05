@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shortio - Simple URL Shortener</title>
+    <meta name="description" content="A simple URL shortener made with hapi.js and Node">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/styles.css">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="container">
+          <div class="row">
+            <div class="column"><h1 class="logo">Shortio</h1></div>
+            <div class="column social">
+              <a href="http://codetuts.tech/">
+                <i class="fa fa-rss"></i>
+              </a>
+              <a href="/path/to/repository">
+                <i class="fa fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="container">
+        <div class="row desc">
+            <p>Simple, hassle-less URL shortener for your big hyperlinks! Save space and share content in a good way with Shortio, give it a try.<p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+          <form id="shorten-form" method="POST">
+            <div class="icon-container">
+              <input type="text" placeholder="Paste your URL here..." name="url">
+              <i class="fa fa-link"></i>
+            </div>
+            <input type="submit" value="Shorten!">
+          </form>
+          
+          <div class="row">
+            <div class="column">
+              <section id="shortened">
+                <p>
+                  <em>Your shortened link: </em>
+                  <a id="link" href="#" target="_blank">
+                    http://localhost:3000/<span id="hash"></span>
+                  </a>
+                </p>
+                <p>
+                  Right-click or Tap &amp; Hold the link and copy the address to clipboard and start using it.
+                </p>
+              </section>
+            </div>
+          </div>
+      </div>
+    </main>
+    
+    <!-- Bluebird: Promise library for older browsers -->
+    <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.min.js"></script>
+    <!-- Axios: A simple promise based HTTP request library -->
+    <script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
+    <script src="public/scripts.js"></script>
+  </body>
+</html>

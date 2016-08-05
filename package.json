@@ -1,0 +1,23 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "A simple url shortener with hapi.js",
+  "main": "shortener.js",
+  "scripts": {
+    "start": "node shortener.js"
+  },
+  "keywords": [
+    "url",
+    "shortener",
+    "app",
+    "hapi"
+  ],
+  "author": "codetuts",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^14.1.0",
+    "inert": "^4.0.1",
+    "joi": "^9.0.4",
+    "mongoose": "^4.5.8"
+  }
+}
