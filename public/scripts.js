@@ -6,7 +6,7 @@ var hash   = document.getElementById('hash');
 var shrBox = document.getElementById('shortened');
 
 function shortUrl(hash) {
-  var baseUrl = 'http://localhost:3000/';
+  var baseUrl = 'http://shortio.herokuapp.com/';
   
   return baseUrl + hash;
 } // End of URL assembly with the redir hash
