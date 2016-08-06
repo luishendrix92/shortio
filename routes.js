@@ -6,7 +6,7 @@ const hashLen    = 8; /* 8 chars long */
 // Local machine? Set baseUrl to 'http://localhost:3000'
 // It's important that you don't add the slash at the end
 // or else, it will conflict with one of the routes
-const baseUrl    = 'http://your-domain.com';
+const baseUrl    = process.env.BASE_URL || 'http://your-domain.com';
 const urlPattern = /^https?:\/\/([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 
 /* CREATING MONGOOSE SCHEMAS
