@@ -46,7 +46,7 @@ module.exports = [
     },
     config: {
       validate: {
-        payload: { url: Joi.string().regex(/^http?:\/\//).required() }
+        payload: { url: Joi.string().regex(/^https?:\/\//).required() }
       }
     }
   },
