@@ -11,10 +11,10 @@ function randomChar() {
   return String.fromCharCode(n+61); // a-z
 }
 
-function randomString(len) {
+function createHash(len) {
   var str = '';
   while(str.length < len) str += randomChar();
   return str;
 }
   
-module.exports = randomString;
+module.exports = createHash;
