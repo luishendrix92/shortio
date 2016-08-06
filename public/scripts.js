@@ -2,22 +2,14 @@
 var form   = document.getElementById('shorten-form');
 var urlBox = form.elements[0];
 var link   = document.getElementById('link');
-var hash   = document.getElementById('hash');
 var shrBox = document.getElementById('shortened');
 
-function shortUrl(hash) {
-  var baseUrl = 'http://shortio.herokuapp.com/';
-  
-  return baseUrl + hash;
-} // End of URL assembly with the redir hash
-
+// Callback function passed to Axios' .post().then()
 function displayShortenedUrl(response) {
-  hash.textContent = response.data.hash;
-  
+  link.textContent = response.data.shortUrl;
   link.setAttribute(
-    'href', shortUrl(response.data.hash)
+    'href', response.data.shortUrl
   ); // Set the link's href attribute
-  
   shrBox.style.opacity = '1';
   urlBox.value = ''; // Reset input
 } // End of function to update the view
@@ -30,6 +22,6 @@ form.addEventListener('submit', function(event) {
     .then(displayShortenedUrl)
     .catch(function(error) {
       // Handle server or validation errors
-      alert('Are you sure the URL is correct?');
+      alert('Are you sure the URL is correct? Make sure it has http:// at the beginning.');
     });
 });
