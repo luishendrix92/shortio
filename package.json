@@ -15,9 +15,12 @@
   "author": "codetuts",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^14.1.0",
-    "inert": "^4.0.1",
-    "joi": "^9.0.4",
-    "mongoose": "^4.5.8"
+    "@hapi/hapi": "^20.1.0",
+    "@hapi/inert": "^6.0.3",
+    "joi": "^17.3.0",
+    "mongoose": "^5.11.14"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

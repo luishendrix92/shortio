@@ -1,30 +1,10 @@
-const Hapi     = require('hapi');
-const server   = new Hapi.Server();
+require('dotenv').config();
+
+const Hapi     = require('@hapi/hapi');
 const routes   = require('./routes');
 const mongoose = require('mongoose');
 const mongoUri = process.env.MONGOURI;
 
-/* MONGOOSE AND MONGOLAB
- * ----------------------------------------------------------------------------
- * Mongoose by default sets the auto_reconnect option to true.
- * We recommend setting socket options at both the server and replica set level.
- * We recommend a 30 second connection timeout because it allows for 
- * plenty of time in most operating environments.
- =============================================================================*/
-
-const options = {
-  server: {
-    socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 }
-  }, 
-  replset: {
-    socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 }
-  }
-};
-
-mongoose.connect(mongoUri, options);
-  
-const db = mongoose.connection;
-  
 /* SERVER INITIALIZATION
  * -----------------------------------------------------------------------
  * We initialize the server once the connection to the database was set
@@ -32,21 +12,30 @@ const db = mongoose.connection;
  * API to be accessible in other domains. In order to serve static files
  * I used the Hapi plugin called 'inert', hence the call to 'require'.
  =======================================================================*/
+const init = async () => {
+  const server = Hapi.server({
+    port: process.env.PORT,
+    routes: { cors: true }
+  });
 
-server.connection({ 
-  port: process.env.PORT,
-  routes: { cors: true }
+  server.route(routes);
+
+  await server.register(require('@hapi/inert'));
+  await server.start();
+
+  console.log(`Server running on port ${server.info.port}`);
+};
+
+process.on('unhandledRejection', (err) => {
+  console.log(err);
+  process.exit(1);
 });
 
-server.register(require('inert'), (err) => {
-  db.on('error', console.error.bind(console, 'connection error:'))
-    .once('open', () => {
-      server.route(routes);
-      
-      server.start(err => {
-        if (err) throw err;
-      
-        console.log(`Server running at port ${server.info.port}`);
-      });
-    });
-});
+try {
+  mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }, () => { init(); });
+} catch (error) {
+  console.error(`Failed to connecto to db: ${error}`);
+}
